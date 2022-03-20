@@ -18,6 +18,14 @@ document.addEventListener("DOMContentLoaded", () =>{
   function save_cookie(data){
     cookie_data.push(data)
     localStorage.setItem('cookie_data', JSON.stringify(cookie_data))
+    screen.innerHTML = ""
+    content = ""
+  }
+
+  function render_cookie(data){
+    let li = document.createElement("li")
+    li.innerText = data
+    list.appendChild(li)
   }
 
   caps.addEventListener("click", () =>{
@@ -64,6 +72,9 @@ document.addEventListener("DOMContentLoaded", () =>{
 
   save_data.addEventListener("click", () => {
     save_cookie(screen.innerHTML)
+    list.innerHTML = ""
+    all_data = JSON.parse(localStorage.getItem('cookie_data'))
+    all_data.forEach(data => render_cookie(data))
   })
 
   }
