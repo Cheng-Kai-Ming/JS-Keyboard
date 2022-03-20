@@ -4,11 +4,21 @@ document.addEventListener("DOMContentLoaded", () =>{
   const position = document.querySelector('.position')
   const delete_word = document.querySelector('#delete')
   const caps = document.querySelector('#caps')
+  const list = document.querySelector('#list')
+  const save_data = document.querySelector('#enter')
   let content = ''
   let position_number = 0
   let caps_lock = true
+  let cookie_data = JSON.parse(localStorage.getItem('cookie_data')) || []
 
-  function alphabet(e){ return e.target.innerText.match(/[a-z]/i) && e.target.innerText.length == 1? true:false }
+  function alphabet(e){ 
+    return e.target.innerText.match(/[a-z]/i) && e.target.innerText.length == 1? true:false 
+  }
+
+  function save_cookie(data){
+    cookie_data.push(data)
+    localStorage.setItem('cookie_data', JSON.stringify(cookie_data))
+  }
 
   caps.addEventListener("click", () =>{
     if (caps_lock){
@@ -50,6 +60,10 @@ document.addEventListener("DOMContentLoaded", () =>{
     } else if(e.target.innerText == "Right" & end_of_right < content_length){
       position_number += 1
     }
+  })
+
+  save_data.addEventListener("click", () => {
+    save_cookie(screen.innerHTML)
   })
 
   }

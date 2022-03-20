@@ -49,3 +49,15 @@ body * {
   font-size: 20px;
   text-align: center;
 }
+
+#screen {
+  padding: 20px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(30, 30px);
+}
