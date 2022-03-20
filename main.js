@@ -3,15 +3,30 @@ document.addEventListener("DOMContentLoaded", () =>{
   const screen = document.querySelector('#screen')
   const position = document.querySelector('.position')
   const delete_word = document.querySelector('#delete')
+  const caps = document.querySelector('#caps')
   let content = ''
   let position_number = 0
+  let caps_lock = true
 
   function alphabet(e){ return e.target.innerText.match(/[a-z]/i) && e.target.innerText.length == 1? true:false }
 
+  caps.addEventListener("click", () =>{
+    if (caps_lock){
+      caps_lock = false
+    } else{
+      caps_lock = true
+    }
+  })
+
   keyboard.addEventListener("click", (e) => {
     if( alphabet(e) ){    
-      content += e.target.innerText
-      screen.innerHTML = content
+      if (caps_lock){
+        content += e.target.innerText
+        screen.innerHTML = content
+      } else {
+        content += e.target.innerText.toLowerCase()
+        screen.innerHTML = content
+      }
     }
     })
 
